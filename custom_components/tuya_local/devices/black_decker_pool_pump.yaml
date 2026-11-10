@@ -1,0 +1,320 @@
+name: Pool pump
+products:
+  - id: hmtbr3nvsycumzws
+    manufacturer: Black+Decker
+    model: Variable Speed Pool Pump
+    model_id: e1nam2tw
+
+entities:
+  - entity: switch
+    name: Pump power
+    icon: "mdi:pump"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  # --- Live Status & Manual Speed ---
+  - entity: number
+    name: Manual speed
+    icon: "mdi:speedometer"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: rpm
+        optional: true
+        force: true
+        range:
+          min: 1150
+          max: 3450
+        mapping:
+          - step: 10
+
+  - entity: switch
+    name: Schedule mode
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 2
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 2
+        type: bitfield
+        name: fault_code
+        optional: true
+
+  - entity: switch
+    name: No-load protection
+    category: config
+    icon: "mdi:shield-check"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Pump clock raw
+    category: config
+    icon: "mdi:clock-digital"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        optional: true
+        force: true
+        range:
+          min: 0
+          max: 9999
+
+  # --- Quick Clean ---
+  - entity: switch
+    name: Quick clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 189
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Quick clean speed
+    icon: "mdi:speedometer-medium"
+    dps:
+      - id: 190
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 1000
+          max: 3450
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Quick clean duration
+    class: duration
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 191
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 10
+          max: 600
+        mapping:
+          - step: 10
+
+  # --- 4-Stage Schedule Speeds & Durations ---
+  - entity: number
+    name: Mode 1 speed
+    category: config
+    icon: "mdi:numeric-1-circle-outline"
+    dps:
+      - id: 149
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 1000
+          max: 3450
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 1 duration
+    class: duration
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 151
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: time
+    name: Mode 1 start time
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 141
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 142
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 2 speed
+    category: config
+    icon: "mdi:numeric-2-circle-outline"
+    dps:
+      - id: 152
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 1000
+          max: 3450
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 2 duration
+    class: duration
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 154
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: time
+    name: Mode 2 start time
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 143
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 144
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 3 speed
+    category: config
+    icon: "mdi:numeric-3-circle-outline"
+    dps:
+      - id: 155
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 1000
+          max: 3450
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 3 duration
+    class: duration
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 157
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: time
+    name: Mode 3 start time
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 145
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 146
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 4 speed
+    category: config
+    icon: "mdi:numeric-4-circle-outline"
+    dps:
+      - id: 158
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 1000
+          max: 3450
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Mode 4 duration
+    class: duration
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: time
+    name: Mode 4 start time
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 147
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 148
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - step: 10
